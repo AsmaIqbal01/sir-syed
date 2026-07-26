@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sir Syed Coaching Academy — Safoora, Karachi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1e3a5f;
+    --navy2: #162d4a;
+    --gold: #f59e0b;
+    --gold2: #fbbf24;
+    --text: #0f172a;
+    --muted: #64748b;
+    --soft: #93c5fd;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+    --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy);
+    padding: 0 max(20px, 5vw);
+    height: 62px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: #fff; text-decoration: none; }
+  .nav-logo span { color: var(--gold2); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--soft); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: var(--gold); color: var(--navy); border: none; border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--gold2); }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 64px max(20px, 8vw) 56px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 320px; height: 320px; border-radius: 50%;
+    background: rgba(245,158,11,0.07);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; left: -40px; bottom: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(147,197,253,0.05);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(245,158,11,0.15); color: var(--gold2);
+    font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(245,158,11,0.3);
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700; line-height: 1.15;
+    color: #fff; margin-bottom: 16px;
+    max-width: 580px;
+  }
+  .hero h1 span { color: var(--gold2); }
+  .hero p { font-size: 16px; color: var(--soft); line-height: 1.75; max-width: 480px; margin-bottom: 32px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 52px; }
+  .btn-gold { background: var(--gold); color: var(--navy); border: none; border-radius: 10px; padding: 12px 26px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--soft); border: 1px solid rgba(147,197,253,0.3); border-radius: 10px; padding: 12px 26px; font-size: 15px; cursor: pointer; text-decoration: none; transition: border-color 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--soft); color: #fff; }
+  .hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+  .hero-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--gold2); }
+  .hero-stat-label { font-size: 12px; color: var(--soft); margin-top: 2px; }
+
+  /* STATS BAR */
+  .stats-bar { background: var(--gold); display: grid; grid-template-columns: repeat(3, 1fr); }
+  .sbar { padding: 18px; text-align: center; border-right: 1px solid rgba(30,58,95,0.15); }
+  .sbar:last-child { border-right: none; }
+  .sbar-n { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); }
+  .sbar-l { font-size: 11px; color: #92400e; margin-top: 2px; }
+
+  /* CLASSES */
+  .section { padding: 72px max(20px, 6vw); max-width: 1000px; margin: 0 auto; }
+  .sec-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; color: var(--navy); text-transform: uppercase; margin-bottom: 8px; }
+  .sec-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .sec-sub { font-size: 15px; color: var(--muted); margin-bottom: 40px; }
+  .classes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .class-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+  .class-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .class-icon { font-size: 32px; margin-bottom: 12px; }
+  .class-name { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .class-board { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .class-badge { display: inline-block; font-size: 11px; font-weight: 500; background: #eff6ff; color: var(--navy); padding: 4px 12px; border-radius: 20px; }
+
+  /* WHY */
+  .why-bg { background: var(--navy); padding: 72px max(20px, 6vw); }
+  .why-inner { max-width: 1000px; margin: 0 auto; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 40px; }
+  .why-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(147,197,253,0.15); border-radius: 14px; padding: 24px; transition: border-color 0.2s; }
+  .why-card:hover { border-color: rgba(245,158,11,0.4); }
+  .why-icon { font-size: 28px; margin-bottom: 12px; }
+  .why-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .why-desc { font-size: 13px; color: var(--soft); line-height: 1.6; }
+
+  /* REGISTER */
+  .register-bg { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 72px max(20px, 6vw); }
+  .register-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .reg-info h2 { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .reg-info p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+  .reg-perks { display: flex; flex-direction: column; gap: 10px; }
+  .reg-perk { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text); }
+  .perk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .reg-form { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+  .form-row { margin-bottom: 14px; }
+  .form-label { font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 5px; display: block; }
+  .form-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--bg); color: var(--text); transition: border-color 0.2s; }
+  .form-input:focus { outline: none; border-color: var(--navy); }
+  .form-select { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--bg); color: var(--text); }
+  .form-submit { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 10px; padding: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 4px; transition: background 0.2s; }
+  .form-submit:hover { background: var(--navy2); }
+  .form-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+  /* LOCATION */
+  .location-section { padding: 72px max(20px, 6vw); max-width: 1000px; margin: 0 auto; }
+  .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .loc-card { background: var(--navy); border-radius: 14px; padding: 22px; display: flex; align-items: flex-start; gap: 14px; }
+  .loc-icon { width: 40px; height: 40px; background: rgba(245,158,11,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .loc-title { font-size: 13px; font-weight: 600; color: var(--gold2); margin-bottom: 4px; }
+  .loc-text { font-size: 13px; color: var(--soft); line-height: 1.5; }
+
+  /* CTA */
+  .cta-strip { background: var(--gold); padding: 52px max(20px, 6vw); text-align: center; }
+  .cta-strip h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .cta-strip p { font-size: 15px; color: #92400e; margin-bottom: 28px; }
+  .btn-navy { background: var(--navy); color: #fff; border: none; border-radius: 10px; padding: 13px 28px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .btn-navy:hover { background: var(--navy2); }
+
+  /* FOOTER */
+  footer { background: var(--navy2); padding: 20px max(20px, 6vw); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .footer-left { font-size: 13px; color: var(--soft); }
+  .footer-left span { color: var(--gold2); font-weight: 500; }
+  .footer-right { font-size: 12px; color: #475569; }
+
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .register-inner { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+    footer { justify-content: center; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Sir Syed <span>Academy</span></a>
+  <ul class="nav-links">
+    <li><a href="#classes">Classes</a></li>
+    <li><a href="#why">Why us</a></li>
+    <li><a href="#register">Register</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <a href="https://wa.me/92XXXXXXXXXX?text=Hi!%20Sir%20Syed%20Academy%20mein%20admission%20lena%20hai" class="nav-cta">Enroll now</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">📍 Safoora, Karachi · Est. 2020</div>
+  <h1>Expert coaching for<br><span>Classes IX–XII</span></h1>
+  <p>Karachi Board ke liye dedicated coaching — experienced faculty, small batches, aur results jo bolta hain.</p>
+  <div class="hero-btns">
+    <a href="#register" class="btn-gold">Register now</a>
+    <a href="#classes" class="btn-outline">View classes</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">4</div><div class="hero-stat-label">Classes offered</div></div>
+    <div><div class="hero-stat-num">Small</div><div class="hero-stat-label">Batch size</div></div>
+    <div><div class="hero-stat-num">Free</div><div class="hero-stat-label">Trial class</div></div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="sbar"><div class="sbar-n">IX–XII</div><div class="sbar-l">All classes</div></div>
+  <div class="sbar"><div class="sbar-n">K.B</div><div class="sbar-l">Karachi Board</div></div>
+  <div class="sbar"><div class="sbar-n">Safoora</div><div class="sbar-l">Location</div></div>
+</div>
+
+<section class="section" id="classes">
+  <div class="sec-eyebrow">Programs</div>
+  <div class="sec-title">Classes we offer</div>
+  <div class="sec-sub">Karachi Board · Morning & evening batches · Affordable fee</div>
+  <div class="classes-grid">
+    <div class="class-card">
+      <div class="class-icon">📘</div>
+      <div class="class-name">Class IX</div>
+      <div class="class-board">Karachi Board</div>
+      <span class="class-badge">Seats available</span>
+    </div>
+    <div class="class-card">
+      <div class="class-icon">📗</div>
+      <div class="class-name">Class X</div>
+      <div class="class-board">Karachi Board</div>
+      <span class="class-badge">Seats available</span>
+    </div>
+    <div class="class-card">
+      <div class="class-icon">📙</div>
+      <div class="class-name">Class XI</div>
+      <div class="class-board">Karachi Board</div>
+      <span class="class-badge">Seats available</span>
+    </div>
+    <div class="class-card">
+      <div class="class-icon">📕</div>
+      <div class="class-name">Class XII</div>
+      <div class="class-board">Karachi Board</div>
+      <span class="class-badge">Seats available</span>
+    </div>
+  </div>
+</section>
+
+<div class="why-bg" id="why">
+  <div class="why-inner">
+    <div class="sec-eyebrow" style="color:var(--gold2)">Why us</div>
+    <div class="sec-title" style="color:#fff">Why Sir Syed Academy</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">👨‍🏫</div>
+        <div class="why-title">Experienced faculty</div>
+        <div class="why-desc">Subject specialists jo students ko individually attention dete hain.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">👥</div>
+        <div class="why-title">Small batches</div>
+        <div class="why-desc">Chhotay batches mein har student ka progress track hota hai.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <div class="why-title">Affordable fee</div>
+        <div class="why-desc">Quality education jo har family afford kar sake.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Board focused</div>
+        <div class="why-desc">Karachi Board syllabus pe complete focus — past papers, mock tests.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="register-bg" id="register">
+  <div class="register-inner">
+    <div class="reg-info">
+      <h2>Register for 2026 session</h2>
+      <p>Admission open hai — abhi register karo aur ek free trial class attend karo. Koi commitment nahi.</p>
+      <div class="reg-perks">
+        <div class="reg-perk"><span class="perk-dot"></span>Free first trial class</div>
+        <div class="reg-perk"><span class="perk-dot"></span>Morning & evening batches</div>
+        <div class="reg-perk"><span class="perk-dot"></span>Affordable monthly fee</div>
+        <div class="reg-perk"><span class="perk-dot"></span>Past papers & mock tests</div>
+        <div class="reg-perk"><span class="perk-dot"></span>WhatsApp updates for parents</div>
+      </div>
+    </div>
+    <div class="reg-form">
+      <div class="form-row">
+        <label class="form-label">Student name</label>
+        <input class="form-input" type="text" placeholder="Full name" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Phone number</label>
+        <input class="form-input" type="tel" placeholder="03XX-XXXXXXX" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Select class</label>
+        <select class="form-select">
+          <option value="">Choose class</option>
+          <option>Class IX</option>
+          <option>Class X</option>
+          <option>Class XI</option>
+          <option>Class XII</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Preferred batch</label>
+        <select class="form-select">
+          <option value="">Choose batch</option>
+          <option>Morning</option>
+          <option>Evening</option>
+        </select>
+      </div>
+      <button class="form-submit">Submit registration</button>
+      <div class="form-note">We'll contact you within 24 hours · Free trial class included</div>
+    </div>
+  </div>
+</div>
+
+<section class="location-section" id="location">
+  <div class="sec-eyebrow">Find us</div>
+  <div class="sec-title">Location & contact</div>
+  <div class="sec-sub" style="margin-bottom:28px;">Safoora area mein conveniently located</div>
+  <div class="location-grid">
+    <div class="loc-card">
+      <div class="loc-icon">📍</div>
+      <div><div class="loc-title">Address</div><div class="loc-text">C-48 Billy's Home, Near Jauhar Complex, Safoora, Karachi 75280</div></div>
+    </div>
+    <div class="loc-card">
+      <div class="loc-icon">📞</div>
+      <div><div class="loc-title">Call / WhatsApp</div><div class="loc-text">Contact us for fee details, batch timings, and free trial class booking.</div></div>
+    </div>
+    <div class="loc-card">
+      <div class="loc-icon">🕐</div>
+      <div><div class="loc-title">Timings</div><div class="loc-text">Monday – Saturday<br>Morning & Evening batches available</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <h2>Free trial class lein — aaj hi</h2>
+  <p>Pehle class attend karo, phir decide karo. Koi pressure nahi.</p>
+  <a href="https://wa.me/92XXXXXXXXXX?text=Hi!%20Free%20trial%20class%20ke%20liye%20register%20karna%20chahta%20hoon" class="btn-navy">WhatsApp karo</a>
+</div>
+
+<footer>
+  <div class="footer-left">© 2026 <span>Sir Syed Coaching Academy</span> · Safoora, Karachi</div>
+  <div class="footer-right">Built by Azee Creations</div>
+</footer>
+
+</body>
+</html>
